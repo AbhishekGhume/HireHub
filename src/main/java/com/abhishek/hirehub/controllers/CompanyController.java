@@ -1,7 +1,7 @@
 package com.abhishek.hirehub.controllers;
 
 import com.abhishek.hirehub.models.Post;
-import com.abhishek.hirehub.services.PostService;
+import com.abhishek.hirehub.services.CompanyService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,16 +13,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/post")
-public class PostController {
+public class CompanyController {
 
     @Autowired
-    private PostService postService;
+    private CompanyService postService;
 
     // Create a new post
     @PostMapping
     public ResponseEntity<Post> sendPost(@RequestBody Post post) {
         Post savedPost = postService.sendPost(post);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(savedPost, HttpStatus.OK);
     }
 
     // Get all posts
